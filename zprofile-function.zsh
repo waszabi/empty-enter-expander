@@ -6,12 +6,16 @@
 
 empty-enter-expander () {
   local target="/Users/szabi/bin/app/kjukju-module-mike/Expander"
+  local mode="Write to terminal"
 
   if [[ -z $BUFFER ]]; then
     while true
       do
 
       clear
+
+      echo "Mode: $mode"
+      echo
 
       ls -1 $target
 
@@ -30,14 +34,31 @@ empty-enter-expander () {
 
           clear
           output="$(bash "$LETTER_DEST")"
-          zle -U "print -z '$output'"
+
+          if [[ ${mode} = "Write to terminal" ]]; then
+            zle -U "print -z '$output'"
+          else
+            echo "$output" | pbcopy
+            echo "Copied to clipboard"
+            zle accept-line
+          fi
 
           return
         else
           target="$LETTER_DEST"
         fi
       else
-        echo "Notice: Unknown character"
+        if [[ $LETTER = *[!\ ]* ]]; then
+          # variable contains characters other than space
+          echo "Notice: Unknown character"
+        else
+          # variable consists of spaces only
+          if [[ ${mode} = "Write to terminal" ]]; then
+            mode="Copy to clipboard"
+          else
+            mode="Write to terminal"
+          fi
+        fi
       fi
 
     done
