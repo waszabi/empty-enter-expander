@@ -7,6 +7,7 @@
 empty-enter-expander () {
   local target="/Users/szabi/bin/app/kjukju-module-mike/Expander"
   local mode="Write to terminal"
+  setopt HIST_IGNORE_SPACE # do not put `print -z` command to history
 
   if [[ -z $BUFFER ]]; then
     while true
@@ -36,7 +37,7 @@ empty-enter-expander () {
           output="$(bash "$LETTER_DEST")"
 
           if [[ ${mode} = "Write to terminal" ]]; then
-            zle -U "print -z '$output'"
+            zle -U " print -z '$output'"
           else
             echo "$output" | pbcopy
             echo "Copied to clipboard"
