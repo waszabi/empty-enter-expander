@@ -36,6 +36,8 @@ empty-enter-expander () {
           clear
           output="$(bash "$LETTER_DEST")"
 
+          [[ -z $output ]] && zle accept-line && return
+
           if [[ ${mode} = "Write to terminal" ]]; then
             zle -U " print -z '$output'"
           else
