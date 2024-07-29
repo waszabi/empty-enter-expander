@@ -5,7 +5,7 @@
 # bindkey "^M" empty-enter-expander 
 
 empty-enter-expander () {
-  local target="/Users/szabi/bin/app/kjukju-module-mike/Expander"
+  local target="/Users/szabi/Tools/expander-module-mike"
   local mode="Write to terminal"
   setopt HIST_IGNORE_SPACE # do not put `print -z` command to history
 
