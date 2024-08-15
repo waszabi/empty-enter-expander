@@ -31,7 +31,7 @@ empty-enter-expander () {
         LETTER_DEST=$(find "$target" -mindepth 1 -maxdepth 1 -name "$LETTER*" -type d,l)
 
         if [ -z "$LETTER_DEST" ]; then
-          LETTER_DEST=$(find "$target" -maxdepth 1 -name "$LETTER*" -type f)
+          LETTER_DEST=$(find "$target" -mindepth 1 -maxdepth 1 -name "$LETTER*" -type f)
 
           clear
           output="$(bash "$LETTER_DEST")"
