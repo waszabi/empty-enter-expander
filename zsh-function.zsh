@@ -52,8 +52,14 @@ empty-enter-expander () {
         fi
       else
         if [[ $LETTER = *[!\ ]* ]]; then
+          if [[ "$LETTER" == $'\t' ]]; then
+            # Tab
+          fi
+
           # variable contains characters other than space
-          echo "Notice: Unknown character"
+          echo "Unknown character"
+          zle accept-line
+          return
         else
           # variable consists of spaces only
           if [[ ${mode} = "Write to terminal" ]]; then
