@@ -27,7 +27,7 @@ empty-enter-expander () {
 
       if [[ "$LETTER" =~ '[a-zA-Z0-9]' ]]
       then
-	# mindepth to exclude parent directory
+        # mindepth to exclude parent directory
         LETTER_DEST=$(find "$target" -mindepth 1 -maxdepth 1 -name "$LETTER*" -type d,l)
 
         if [ -z "$LETTER_DEST" ]; then
