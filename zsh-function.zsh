@@ -37,7 +37,7 @@ empty-enter-expander () {
           # do nothing on empty output
           [[ -z $output ]] && zle reset-prompt && return
 
-          zle -U " print -z '$output'"
+          zle -U " print -z '$output' && clear"
 
           return
         else # empty find result
