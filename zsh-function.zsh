@@ -26,11 +26,11 @@ empty-enter-expander () {
 
       if [[ "$LETTER" =~ '[a-zA-Z0-9]' ]]; then
         # use depth parameters to search in the current directory only
-        LETTER_DEST=$(find "$target" -mindepth 1 -maxdepth 1 -name "$LETTER*" -type d,l)
+        LETTER_DEST=$(find "$target" -mindepth 1 -maxdepth 1 -name "$LETTER*")
 
-        if [ -z "$LETTER_DEST" ]; then
-          LETTER_DEST=$(find "$target" -mindepth 1 -maxdepth 1 -name "$LETTER*" -type f)
-
+        if [[ -d "$LETTER_DEST" ]]; then # directory
+          target="$LETTER_DEST"
+        elif [[ -f "$LETTER_DEST" ]]; then # file
           clear
           output="$(bash "$LETTER_DEST")"
 
@@ -40,8 +40,13 @@ empty-enter-expander () {
           zle -U " print -z '$output'"
 
           return
-        else
-          target="$LETTER_DEST"
+        else # empty find result
+          clear
+
+          echo "ERROR: Not a directory nor a file"
+          zle reset-prompt
+
+          return
         fi
       else # other than alphanumeric character was pressed
         clear
