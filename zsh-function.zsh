@@ -6,7 +6,6 @@
 
 empty-enter-expander () {
   local target="/Users/szabi/Tools/expander-module-mike"
-  local mode="Write to terminal"
 
   # do not put the " print -z" command with leading space into history
   setopt HIST_IGNORE_SPACE
@@ -17,9 +16,6 @@ empty-enter-expander () {
   else
     while true; do
       clear
-
-      echo "Mode: $mode"
-      echo
 
       ls -1 $target
 
@@ -41,13 +37,7 @@ empty-enter-expander () {
           # do nothing on empty output
           [[ -z $output ]] && zle reset-prompt && return
 
-          if [[ ${mode} = "Write to terminal" ]]; then
-            zle -U " print -z '$output'"
-          else
-            echo "$output" | pbcopy
-            echo "Copied to clipboard"
-            zle accept-line
-          fi
+          zle -U " print -z '$output'"
 
           return
         else
@@ -64,12 +54,11 @@ empty-enter-expander () {
           zle reset-prompt
           return
         else
-          # variable consists of spaces only
-          if [[ ${mode} = "Write to terminal" ]]; then
-            mode="Copy to clipboard"
-          else
-            mode="Write to terminal"
-          fi
+          # variable consists of space only
+          clear
+          echo "ERROR: Space bar was pressed"
+          zle reset-prompt
+          return
         fi
       fi
 
