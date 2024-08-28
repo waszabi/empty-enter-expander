@@ -43,25 +43,22 @@ empty-enter-expander () {
         else
           target="$LETTER_DEST"
         fi
-      else
-        if [[ $LETTER = *[!\ ]* ]]; then
+      else # other than alphanumeric character was pressed
+        clear
+
+        if [[ $LETTER = *[!\ ]* ]]; then # not a space was pressed
           if [[ "$LETTER" == $'\t' ]]; then
-            # Tab
+            echo "ERROR: Tab key was pressed"
+          else
+            echo "ERROR: Unknown character was pressed"
           fi
-
-          # variable contains characters other than space
-          echo "Unknown character"
-          zle reset-prompt
-          return
-        else
-          # variable consists of space only
-          clear
+        else # space was pressed
           echo "ERROR: Space bar was pressed"
-          zle reset-prompt
-          return
         fi
-      fi
 
+        zle reset-prompt
+        return
+      fi
     done
   fi
 }
