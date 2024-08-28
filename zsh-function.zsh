@@ -36,7 +36,7 @@ empty-enter-expander () {
           output="$(bash "$LETTER_DEST")"
 
           # do nothing on empty output
-          [[ -z $output ]] && zle accept-line && return
+          [[ -z $output ]] && zle reset-prompt && return
 
           if [[ ${mode} = "Write to terminal" ]]; then
             zle -U " print -z '$output'"
@@ -58,7 +58,7 @@ empty-enter-expander () {
 
           # variable contains characters other than space
           echo "Unknown character"
-          zle accept-line
+          zle reset-prompt
           return
         else
           # variable consists of spaces only
