@@ -17,6 +17,9 @@ empty-enter-expander () {
     while true; do
       clear
 
+      echo "Empty Enter Expander"
+      echo
+
       ls -1 $target
 
       echo
