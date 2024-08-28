@@ -7,12 +7,12 @@
 empty-enter-expander () {
   local target="/Users/szabi/Tools/expander-module-mike"
   local mode="Write to terminal"
-  setopt HIST_IGNORE_SPACE # do not put `print -z` command to history
+
+  # do not put the " print -z" command with leading space into history
+  setopt HIST_IGNORE_SPACE
 
   if [[ -z $BUFFER ]]; then
-    while true
-      do
-
+    while true; do
       clear
 
       echo "Mode: $mode"
@@ -25,9 +25,8 @@ empty-enter-expander () {
 
       read -k LETTER
 
-      if [[ "$LETTER" =~ '[a-zA-Z0-9]' ]]
-      then
-        # mindepth to exclude parent directory
+      if [[ "$LETTER" =~ '[a-zA-Z0-9]' ]]; then
+        # use depth parameters to search in the current directory only
         LETTER_DEST=$(find "$target" -mindepth 1 -maxdepth 1 -name "$LETTER*" -type d,l)
 
         if [ -z "$LETTER_DEST" ]; then
@@ -36,6 +35,7 @@ empty-enter-expander () {
           clear
           output="$(bash "$LETTER_DEST")"
 
+          # do nothing on empty output
           [[ -z $output ]] && zle accept-line && return
 
           if [[ ${mode} = "Write to terminal" ]]; then
