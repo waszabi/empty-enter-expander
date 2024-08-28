@@ -11,7 +11,10 @@ empty-enter-expander () {
   # do not put the " print -z" command with leading space into history
   setopt HIST_IGNORE_SPACE
 
-  if [[ -z $BUFFER ]]; then
+  if [[ ! -z $BUFFER ]]; then
+    # execute the command that was entered
+    zle accept-line
+  else
     while true; do
       clear
 
@@ -71,8 +74,5 @@ empty-enter-expander () {
       fi
 
     done
-
-  else
-    zle accept-line
   fi
 }
