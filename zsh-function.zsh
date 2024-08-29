@@ -40,7 +40,9 @@ empty-enter-expander () {
           # do nothing on empty output
           [[ -z $output ]] && zle reset-prompt && return
 
-          zle -U " print -z '$output' && clear"
+          enter=$'\r' # carriage return character
+          #enter="`echo -e '\r'`" # literal representation
+          zle -U " print -z '$output' && clear$enter"
 
           return
         else # empty find result
