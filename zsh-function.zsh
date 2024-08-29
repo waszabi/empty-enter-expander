@@ -1,5 +1,6 @@
 # Usage: Add and adapt the lines below to the .zprofile
 #
+# setopt HIST_IGNORE_SPACE
 # export EMPTY_ENTER_EXPANDER_MODULE_PATH="/Users/user/expander-module-path"
 # source ~/Tools/empty-enter-expander/zsh-function.zsh 2>/dev/null || :
 # zle -N empty-enter-expander 
@@ -7,9 +8,6 @@
 
 empty-enter-expander () {
   local target="$EMPTY_ENTER_EXPANDER_MODULE_PATH"
-
-  # do not put the " print -z" command with leading space into history
-  setopt HIST_IGNORE_SPACE
 
   if [[ ! -z $BUFFER ]]; then
     # execute the command that was entered
@@ -41,6 +39,7 @@ empty-enter-expander () {
           # do nothing on empty output
           [[ -z $output ]] && zle reset-prompt && return
 
+          # use HIST_IGNORE_SPACE to not put the " print -z" command into history
           enter=$'\r' # carriage return character
           zle -U " print -z '$output' && clear$enter"
 
