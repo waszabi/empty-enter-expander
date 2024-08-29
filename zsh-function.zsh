@@ -36,7 +36,7 @@ empty-enter-expander () {
           target="$LETTER_DEST"
         elif [[ -f "$LETTER_DEST" ]]; then # file
           clear
-          output="$(bash "$LETTER_DEST")"
+          output="$(source "$LETTER_DEST")"
 
           # do nothing on empty output
           [[ -z $output ]] && zle reset-prompt && return
