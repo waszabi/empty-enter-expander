@@ -6,7 +6,7 @@ Let's say you have a lengthy Git command.
 Prepare a script that will output it.
 
 ```shell
-# contents of the "~/Scripts/g Git/l Log" script
+# contents of the example script
 echo 'git log --pretty=format:"%h %an : %s %d" --graph'
 ```
 
