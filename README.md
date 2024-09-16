@@ -33,4 +33,5 @@ Open a new shell to apply the configuration.
 Hit Enter on an empty command to activate the expander.
 It will open a listing of stored commands, so you do not have to remember them.
 Then press the `g` and `l` keys to insert the example command into the prompt.
+
 You can now store your own commands in a structure that you prefer.

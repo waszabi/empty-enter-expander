@@ -1,11 +1,3 @@
-# Usage: Add and adapt the lines below to the .zprofile
-#
-# setopt HIST_IGNORE_SPACE
-# export EMPTY_ENTER_EXPANDER_MODULE_PATH="/Users/user/expander-module-path"
-# source ~/Tools/empty-enter-expander/zsh-function.zsh 2>/dev/null || :
-# zle -N empty-enter-expander 
-# bindkey "^M" empty-enter-expander 
-
 empty-enter-expander () {
   local target="$EMPTY_ENTER_EXPANDER_MODULE_PATH"
 
