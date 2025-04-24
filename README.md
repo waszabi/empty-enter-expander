@@ -1,4 +1,6 @@
 This tool can help you type less in the terminal.
+It is currently written for the `zsh`.
+The `bash` version is under development.
 
 **Empty Enter Expander** inserts a command into the prompt with a few keystrokes.
 
