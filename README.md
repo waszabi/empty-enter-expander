@@ -4,6 +4,19 @@
 
 It is currently written for the `zsh`. The `bash` version is not published yet.
 
+## Demo
+
+Commands are stored in a module directory that contains files and folders with lowercase letters at the beginning of their names, which act as shortcuts.
+
+The tool is activated by pressing Enter on an empty command.
+
+After that, the following keys are pressed to activate the commands::
+- `1`, `1`, `1`, `Enter` to change the directory to the project's folder
+- `g`, `s`, `Enter` to view the git status
+- `g`, `l`, `Enter` to view the git log
+
+![Demo of Empty Enter Expander](zsh-demo.gif)
+
 ## Prepare your commands
 
 Expander uses a directory where the commands are stored.
